@@ -1,5 +1,8 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## BEFORE START
+Make sure that you've Node > 20 and you've put your walletConnectId to .env file you've created
+
 ## Getting Started
 
 First, run the development server:
