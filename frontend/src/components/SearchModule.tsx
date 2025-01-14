@@ -3,6 +3,7 @@ import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import { useState } from "react"
 import { baseUrl } from "@/lib/constants"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu"
 
 const SearchModule = ({ className }: { className?: string }) => {
     const [value, setValue] = useState<string>("");
@@ -21,17 +22,29 @@ const SearchModule = ({ className }: { className?: string }) => {
     console.log(value)
     return (
         <div className={cn(className, "flex w-full max-w-sm items-center space-x-2")}>
-            <Input
-                type="search"
-                placeholder="Fill with your token address"
-                onChange={(e) => setValue(e.target.value)}
-            />
-            <Button
-                type="submit"
-                onClick={() => search(value)}
-            >
-                Search
-            </Button>
+            <div>
+                <Input
+                    type="search"
+                    placeholder="Fill with your token address"
+                    onChange={(e) => setValue(e.target.value)}
+                />
+                <Button
+                    type="submit"
+                    onClick={() => search(value)}
+                >
+                    Search
+                </Button>
+            </div>
+            <DropdownMenu>
+                <DropdownMenuContent>
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                    <DropdownMenuItem>Billing</DropdownMenuItem>
+                    <DropdownMenuItem>Team</DropdownMenuItem>
+                    <DropdownMenuItem>Subscription</DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
         </div>
     )
 }
