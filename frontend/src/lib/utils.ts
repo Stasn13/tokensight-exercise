@@ -8,3 +8,16 @@ export function cn(...inputs: ClassValue[]) {
 export function currentDate() {
   return new Date().toISOString().split("T")[0]
 }
+
+export function formatNumber(value: string | number) {
+  const amount = Number(value)
+  if (amount >= 1_000_000_000) {
+    return (amount / 1_000_000_000).toFixed(2) + 'B'; 
+  } else if (amount >= 1_000_000) {
+    return (amount / 1_000_000).toFixed(2) + 'M';
+  } else if (amount >= 1_000) {
+    return (amount / 1_000).toFixed(2) + 'K';
+  } else {
+    return amount.toString(); // Less than 1K
+  }
+}

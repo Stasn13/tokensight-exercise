@@ -5,25 +5,39 @@ import { Token, useToken } from "@/hooks/useTokens"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./ui/chart"
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
 import { useMemo } from "react"
-import { currentDate } from "@/lib/utils"
+import { cn, currentDate, formatNumber } from "@/lib/utils"
 import { SecurityData } from "@/hooks/useSecurityData"
 
-const TokenView = ({ commonData, chartData, securityData }: { commonData: Token, chartData: any, securityData: SecurityData }) => {
+type TokenViewProps = {
+    commonData: Token;
+    chartData?: any;
+    securityData?: SecurityData;
+    loadingSecurity: boolean;
+    loadingChart: boolean;
+};
+
+const TokenView = ({
+    commonData,
+    chartData,
+    securityData,
+    loadingSecurity,
+    loadingChart,
+}: TokenViewProps) => {
     const groupDataRow = useMemo(() => ([{
         title: "Price",
-        ammount: commonData?.attributes?.price_usd,
+        ammount: formatNumber(commonData?.attributes?.price_usd),
         addText: currentDate(),
     }, {
         title: "Market Cap",
-        ammount: Number(commonData?.attributes?.market_cap_usd).toFixed(2),
+        ammount: formatNumber(commonData?.attributes?.market_cap_usd),
         addText: currentDate(),
     }, {
         title: "FDV",
-        ammount: commonData?.attributes?.fdv_usd,
+        ammount: formatNumber(commonData?.attributes?.fdv_usd),
         addText: currentDate(),
     }, {
         title: "Total Reserve",
-        ammount: Number(commonData?.attributes?.total_reserve_in_usd).toFixed(2),
+        ammount: formatNumber(commonData?.attributes?.total_reserve_in_usd),
         addText: currentDate(),
     }]), [commonData]);
 
@@ -40,10 +54,10 @@ const TokenView = ({ commonData, chartData, securityData }: { commonData: Token,
 
     const groupDataProfile = useMemo(() => ([{
         title: "LP Token Total Supply:",
-        ammount: securityData?.lp_total_supply,
+        ammount: formatNumber(securityData?.lp_total_supply || 0) || "N/A",
         addText: currentDate(),
     }, {
-        title: "LP Token Total Supply:",
+        title: "LP holders count:",
         ammount: securityData?.lp_holder_count,
         addText: currentDate(),
     }, {
@@ -55,7 +69,7 @@ const TokenView = ({ commonData, chartData, securityData }: { commonData: Token,
     return (
         <div className="mt-6 flex flex-col gap-4">
             <div>
-                <Card className="inline-block mb-4 text-2xl font-bold inline-black animate-pulse bg-foreground-light">
+                <Card className="inline-block mb-4 text-2xl font-bold inline-black bg-foreground-light">
                     {commonData?.attributes?.name}
                 </Card>
             </div>
@@ -104,7 +118,11 @@ const TokenView = ({ commonData, chartData, securityData }: { commonData: Token,
                                     might be volatile, always check the latest data
                                 </p>
                             </div>
-                            <div className="ml-auto font-medium">{item.value}</div>
+                            <div
+                                className={cn(loadingSecurity && "animate-pulse blur-md", "ml-auto font-bold")}
+                            >
+                                {item.value}
+                            </div>
                         </div>
                     ))}
                 </Card>
@@ -118,19 +136,29 @@ const TokenView = ({ commonData, chartData, securityData }: { commonData: Token,
                         <div className="ml-4 space-y-1 mr-2">
                             <p className="text-sm font-medium leading-none">Buy tax</p>
                         </div>
-                        <div className="ml-auto font-medium">{Number(securityData?.buy_tax) || "n/a"}</div>
+                        <div
+                            className={cn(loadingSecurity && "animate-pulse blur-md", "ml-auto font-bold")}
+                        >
+                            {Number(securityData?.buy_tax) || "n/a"}
+                        </div>
                     </div>
                     <div className="flex items-center mb-2">
                         <div className="ml-4 space-y-1 mr-2">
                             <p className="text-sm font-medium leading-none">Sell tax</p>
                         </div>
-                        <div className="ml-auto font-medium">{Number(securityData?.sell_tax) || "n/a"}</div>
+                        <div
+                            className={cn(loadingSecurity && "animate-pulse blur-md", "ml-auto font-bold")}
+                        >
+                            {Number(securityData?.sell_tax) || "n/a"}</div>
                     </div>
                 </Card>
             </div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 {groupDataProfile.map((item) => (
-                    <Card key={item.title}>
+                    <Card
+                        className={cn(loadingSecurity && "animate-pulse blur-md")}
+                        key={item.title}
+                    >
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">
                                 {item.title}
@@ -146,7 +174,7 @@ const TokenView = ({ commonData, chartData, securityData }: { commonData: Token,
                     </Card>
                 ))}
             </div>
-            <Card className="w-full bg-black text-white">
+            <Card className={cn(loadingChart && "animate-pulse blur-md", "w-full bg-black text-white")}>
                 <CardHeader>
                     <CardTitle className="text-white">AAVE Token Price Chart</CardTitle>
                 </CardHeader>
