@@ -1,7 +1,7 @@
 import { baseUrl } from '@/lib/constants'
 import { useQuery } from '@tanstack/react-query'
 
-type Token = {
+export type Token = {
     attributes: {
         name: string
         symbol: string

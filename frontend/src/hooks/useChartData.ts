@@ -20,7 +20,7 @@ const fetchChart = async (id = "aave"): Promise<Chart> => {
     return formatedChartData
 }
 
-const useChart = (id: string) => {
+const useChart = (id?: string) => {
     return useQuery({
         queryKey: ['chart'],
         queryFn: () => fetchChart(id),

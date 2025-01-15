@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-type SecurityData = {
+export type SecurityData = {
     buy_tax: string
     sell_tax: string
     holder_count: string
