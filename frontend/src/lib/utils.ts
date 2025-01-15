@@ -18,6 +18,6 @@ export function formatNumber(value: string | number) {
   } else if (amount >= 1_000) {
     return (amount / 1_000).toFixed(2) + 'K';
   } else {
-    return amount.toString(); // Less than 1K
+    return amount.toFixed(2).toString(); // Less than 1K
   }
 }

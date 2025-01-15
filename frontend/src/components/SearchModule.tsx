@@ -35,7 +35,7 @@ const SearchModule = ({ className, onValueSet }: { className?: string, onValueSe
                 <Button
                     type="submit"
                     onClick={() => search(value)}
-                    className="w-[80px]"
+                    // className="h-13 text-md py-4 px-6"
                 >
                     Search
                 </Button>

@@ -25,8 +25,6 @@ const Dashboard = () => {
     /* 
     * 1. add Readme
      * 2. user profile
-     * 3. mobile responsive
-     * 4. error handling
      * 5. pairs support
      * 6. test on other networks
      * 8. deploy
@@ -35,12 +33,12 @@ const Dashboard = () => {
     return (
         <main>
             <SearchModule onValueSet={setValue} />
-            {isError &&
-                <p className="text-2xl font-bold fixed inset-[150px] flex items-center justify-center">Token not found</p>
+            {isConnected && isError &&  
+                <p className="text-2xl font-bold fixed inset-x-[40px] md:inset-x-[100px] inset-y-[150px] flex items-center justify-center">Token not found</p>
             }
             {!isConnected &&
                 <p
-                    className={cn(isShaking && "scale-125", "text-2xl font-bold fixed inset-0 flex items-center justify-center transition-transform")}
+                    className={cn(isShaking && "scale-125", "text-center text-2xl font-bold fixed inset-0 flex items-center justify-center transition-transform")}
                     onClick={handleClick}
                 >
                     Use "Connect Wallet" button to proceed

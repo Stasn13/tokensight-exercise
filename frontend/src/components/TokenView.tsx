@@ -4,7 +4,7 @@ import { LayoutDashboard, LockOpen, Search, UsersRound } from "lucide-react"
 import { Token, useToken } from "@/hooks/useTokens"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./ui/chart"
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
-import { useMemo } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { cn, currentDate, formatNumber } from "@/lib/utils"
 import { SecurityData } from "@/hooks/useSecurityData"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
@@ -24,6 +24,17 @@ const TokenView = ({
     loadingSecurity,
     loadingChart,
 }: TokenViewProps) => {
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768); // Breakpoint for mobile devices
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     const groupDataRow = useMemo(() => ([{
         title: "Price",
         ammount: formatNumber(commonData?.attributes?.price_usd),
@@ -108,7 +119,7 @@ const TokenView = ({
                 ))}
             </div>
             <div className="flex flex-wrap md:flex-nowrap gap-4">
-                <Card className="md: w-3/4">
+                <Card className="md:w-3/4">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-2xl font-bold mb-2">
                             Security profile
@@ -191,7 +202,7 @@ const TokenView = ({
                                 color: "white",
                             },
                         }}
-                        className="w-full h-[300px]"
+                        className="w-full h-[150px] md:h-[300px]"
                     >
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart data={chartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
@@ -200,6 +211,7 @@ const TokenView = ({
                                     tickFormatter={(value) => value}
                                     interval={30}
                                     stroke="#666"
+                                    hide={isMobile}
                                 />
                                 <YAxis
                                     domain={['auto', 'auto']}
