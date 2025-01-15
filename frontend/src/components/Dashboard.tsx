@@ -23,6 +23,7 @@ const Dashboard = () => {
 
     // TODO: backlog
     /* 
+    * 1. add Readme
      * 2. user profile
      * 3. mobile responsive
      * 4. error handling

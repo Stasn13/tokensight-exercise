@@ -7,6 +7,7 @@ import { CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis } fro
 import { useMemo } from "react"
 import { cn, currentDate, formatNumber } from "@/lib/utils"
 import { SecurityData } from "@/hooks/useSecurityData"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
 type TokenViewProps = {
     commonData: Token;
@@ -68,10 +69,14 @@ const TokenView = ({
 
     return (
         <div className="mt-6 flex flex-col gap-4">
-            <div>
-                <Card className="inline-block mb-4 text-2xl font-bold inline-black bg-foreground-light">
+            <div className="flex items-center">
+                <Card className="inline-block mr-4 text-2xl font-bold inline-black bg-foreground-light">
                     {commonData?.attributes?.name}
                 </Card>
+                <Avatar className="inline-block">
+                    <AvatarImage src={commonData?.attributes?.image_url} alt="@shadcn" />
+                    <AvatarFallback>{commonData?.attributes.symbol}</AvatarFallback>
+                </Avatar>
             </div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 {groupDataRow.map((item) => (

@@ -10,6 +10,7 @@ export type Token = {
         fdv_usd: string
         market_cap_usd: string
         total_reserve_in_usd: string
+        image_url: string
     }
     id: number
 }
