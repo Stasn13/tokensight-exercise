@@ -26,26 +26,21 @@ List the ready features here:
 - Search for existing tokens by smart-contract address
 - Enjoy crucial data including Security and Price chart
 - Share link for already found tokens with friends
+- Mobile friendly!
 
 
 ## Screenshots
 ![Example screenshot](./screenshot.png)
-<!-- It is always good to have it. -->
 
 
 ## Setup
-What are the project requirements/dependencies? What is the expected node/npm version?
-
-Proceed to describe how to install / setup one's local environment / get started with the project.
-
-Commands could be highlighted with a markup
-`write-your-code-here`
+`cd frontend`
+Make sure that you've Node > 20
+`npm install --force` or `npm install --legacy-peer-deps` to fetch necessary deps as we use `Next.js === 15.1`
 
 ## Areas for Improvement
-Usually test exercises are limited by a time. So you will be unable to uncover all potential in a code. But you can share your thoughts on what could be improved. Include areas you believe need improvement / could be improved.
 
 Areas for improvement:
-- Improvement to be done 1
-- Improvement to be done 2
-
-<!-- You don't have to include all sections - just the one's relevant to your project -->
+- Improve chart with range selection
+- Add more data
+- Add attractive banners with top tokens, latest tokens, popular pairs etc. That can improve user impression
