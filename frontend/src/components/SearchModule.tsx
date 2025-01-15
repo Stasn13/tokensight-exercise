@@ -2,15 +2,18 @@ import { cn } from "@/lib/utils"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
-import { useSearchParams } from "next/navigation"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
 
 const SearchModule = ({ className, onValueSet }: { className?: string, onValueSet: Dispatch<SetStateAction<string>> }) => {
     const [value, setValue] = useState<string>("");
     const searchParams = useSearchParams();
+    const pathname = usePathname();
+    const { replace } = useRouter();
 
     const search = (searchValue: string) => {
-        onValueSet(searchValue)
+        onValueSet(searchValue);
+        replace(`${pathname}?token=${searchValue}`);
     }
 
     useEffect(() => {

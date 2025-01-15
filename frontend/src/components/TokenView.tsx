@@ -180,8 +180,8 @@ const TokenView = ({
                 ))}
             </div>
             <Card className={cn(loadingChart && "animate-pulse blur-md", "w-full bg-black text-white")}>
-                <CardHeader>
-                    <CardTitle className="text-white">AAVE Token Price Chart</CardTitle>
+                <CardHeader className="mb-4">
+                    <CardTitle className="text-white">{commonData?.attributes?.name} Price Chart</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <ChartContainer

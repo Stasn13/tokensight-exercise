@@ -24,7 +24,7 @@ const fetchToken = async (addr: string): Promise<Token> => {
 
 const useToken = (searchValue: string) => {
     return useQuery({
-        queryKey: ['token'],
+        queryKey: ['token', searchValue],
         queryFn: () => fetchToken(searchValue),
         enabled: !!searchValue,
     })
