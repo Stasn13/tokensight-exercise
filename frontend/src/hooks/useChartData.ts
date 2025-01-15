@@ -22,7 +22,7 @@ const fetchChart = async (id = "aave"): Promise<Chart> => {
 
 const useChart = (id?: string) => {
     return useQuery({
-        queryKey: ['chart'],
+        queryKey: ['chart', id],
         queryFn: () => fetchChart(id),
         enabled: !!id,
     })

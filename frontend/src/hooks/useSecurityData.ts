@@ -20,7 +20,7 @@ const fetchSecurityData = async (addr: string): Promise<SecurityData> => {
 
 const useSecurityData = (addr: string) => {
     return useQuery({
-        queryKey: ['securityData'],
+        queryKey: ['securityData', addr],
         queryFn: () => fetchSecurityData(addr),
         enabled: !!addr,
     })
