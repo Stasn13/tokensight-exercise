@@ -14,7 +14,7 @@ export default function Home() {
     <div>
       <QueryClientProvider client={queryClient}>
         <Web3Provider>
-          <div className="absolute right-8 top-4 z-20">
+          <div className="fixed right-8 top-4 z-20">
             <ConnectKitButton />
           </div>
           <div className="flex p-2 md:px-4 gap-2 md:gap-0 h-[100vh] overflow-hidden">
