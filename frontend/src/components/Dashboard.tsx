@@ -15,6 +15,15 @@ const Dashboard = () => {
     const { data: dataSecurity, isLoading: loadingSecurity } = useSecurityData(value);
     const { data: dataChart, isLoading: loadingChart } = useChart(data?.attributes.coingecko_coin_id);
 
+    // TODO: backlog
+    /* 1. authentication
+     * 2. user profile
+     * 3. mobile responsive
+     * 4. error handling
+     * 5. pairs support
+     * 6. test on other networks
+    */
+
     return (
         <main>
             <SearchModule onValueSet={setValue} />
