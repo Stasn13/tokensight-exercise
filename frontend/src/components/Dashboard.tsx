@@ -1,11 +1,8 @@
-import Link from "next/link"
-import { Card } from "./ui/card"
-import { LayoutDashboard, Search } from "lucide-react"
+
 import SearchModule from "./SearchModule"
 import TokenView from "./TokenView"
 import { useToken } from "@/hooks/useTokens"
 import { useState } from "react"
-import { QueryClient } from "@tanstack/react-query"
 import { useSecurityData } from "@/hooks/useSecurityData"
 import { useChart } from "@/hooks/useChartData"
 
@@ -22,6 +19,8 @@ const Dashboard = () => {
      * 4. error handling
      * 5. pairs support
      * 6. test on other networks
+     * 7. add menu links and improve btns
+     * 8. deploy
     */
 
     return (
