@@ -28,7 +28,6 @@ const Dashboard = () => {
      * 4. error handling
      * 5. pairs support
      * 6. test on other networks
-     * 7. add menu links and improve btns
      * 8. deploy
     */
 
@@ -42,7 +41,7 @@ const Dashboard = () => {
                 >
                     Use "Connect Wallet" button to proceed
                 </p>}
-            {data && isConnected &&
+            {data && isConnected && value &&
                 <TokenView
                     commonData={data}
                     chartData={dataChart}
