@@ -23,11 +23,8 @@ const Dashboard = () => {
 
     // TODO: backlog
     /* 
-    * 1. add Readme
+     * 1. add banners for user interactions
      * 2. user profile
-     * 5. pairs support
-     * 6. test on other networks
-     * 8. deploy
     */
 
     return (
