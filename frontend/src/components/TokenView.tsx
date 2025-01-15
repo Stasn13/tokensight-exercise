@@ -1,17 +1,17 @@
-import Link from "next/link"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
-import { LayoutDashboard, LockOpen, Search, UsersRound } from "lucide-react"
-import { Token, useToken } from "@/hooks/useTokens"
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
+import { LockOpen, UsersRound } from "lucide-react"
+import { Token } from "@/hooks/useTokens"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./ui/chart"
-import { CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
+import { Line, LineChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
 import { useEffect, useMemo, useState } from "react"
 import { cn, currentDate, formatNumber } from "@/lib/utils"
 import { SecurityData } from "@/hooks/useSecurityData"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import { Chart } from "@/hooks/useChartData"
 
 type TokenViewProps = {
     commonData: Token;
-    chartData?: any;
+    chartData?: Chart;
     securityData?: SecurityData;
     loadingSecurity: boolean;
     loadingChart: boolean;

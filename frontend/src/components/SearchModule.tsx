@@ -20,7 +20,7 @@ const SearchModule = ({ className, onValueSet }: { className?: string, onValueSe
         const token = searchParams.get("token");
         onValueSet(token || "");
         setValue(token || "")
-    }, [searchParams])
+    }, [searchParams, onValueSet])
 
     return (
         <>

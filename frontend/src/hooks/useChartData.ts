@@ -1,12 +1,10 @@
-import { baseUrl } from '@/lib/constants'
 import { useQuery } from '@tanstack/react-query'
 
-type Chart = {
+export type Chart = {
     date: string
     price: number
 }[]
 
-// TODO: remove aave as default id
 const fetchChart = async (id = "aave"): Promise<Chart> => {
     const vsCurrency = "usd";
     const days = 365; // Might be used later as timeRange selector
